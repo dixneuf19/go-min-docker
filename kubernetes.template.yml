@@ -1,0 +1,26 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: go-min-docker-deployment
+spec:
+  selector:
+    matchLabels:
+      app: go-min-docker
+  replicas: 1 
+  template:
+    metadata:
+      labels:
+        app: go-min-docker
+    spec:
+      containers:
+      - name: go-min-docker
+        image: "${DOCKER_IMAGE}"
+        imagePullPolicy: Always
+        command: ["./app"]
+        resources:
+          requests:
+            memory: "300Mi"
+            cpu: "300m"
+          limits:
+            memory: "500Mi"
+            cpu: "500m"

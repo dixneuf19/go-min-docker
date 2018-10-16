@@ -2,7 +2,6 @@ package config
 
 import (
 	"fmt"
-	"os"
 	"strings"
 
 	"github.com/spf13/viper"
@@ -19,19 +18,19 @@ func Init() {
 		panic(fmt.Sprintf("%s: %s", "Unable to read Config Files in config/*", err))
 	}
 
-	var secretPath string
-	_, err = os.Stat("./secret.yml")
+	var secretPath = "./secret"
+	// _, err = os.Stat("./secret.yml")
 
-	if os.IsNotExist(err) {
-		_, err := os.Stat("/etc/secret/secret.yml")
-		if os.IsNotExist(err) {
-			fmt.Println("Secret file not found")
-		} else {
-			secretPath = "/etc/secret"
-		}
-	} else {
-		secretPath = "./"
-	}
+	// if os.IsNotExist(err) {
+	// 	_, err := os.Stat("/etc/secret/secret.yml")
+	// 	if os.IsNotExist(err) {
+	// 		fmt.Println("Secret file not found")
+	// 	} else {
+	// 		secretPath = "/etc/secret"
+	// 	}
+	// } else {
+	// 	secretPath = "./"
+	// }
 
 	if secretPath != "" {
 		viper.SetConfigName("secret")

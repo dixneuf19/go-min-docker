@@ -19,7 +19,7 @@ spec:
         command: ["./app"]
         volumeMounts:
         - name: secret
-          mountPath: "/etc/secret"
+          mountPath: "/secret"
           readOnly: true
         resources:
           requests:

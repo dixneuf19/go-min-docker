@@ -19,15 +19,27 @@ func Init() {
 		panic(fmt.Sprintf("%s: %s", "Unable to read Config Files in config/*", err))
 	}
 
-	if _, err := os.Stat("./secret.yml"); !os.IsNotExist(err) {
+	var secretPath string
+	_, err = os.Stat("./secret.yml")
+
+	if os.IsNotExist(err) {
+		_, err := os.Stat("/etc/secret/secret.yml")
+		if !os.IsNotExist(err) {
+			fmt.Println("Secret file not found")
+		} else {
+			secretPath = "/etc/secret/secret.yml"
+		}
+	} else {
+		secretPath = "./secret.yml"
+	}
+
+	if secretPath != "" {
 		viper.SetConfigName("secret")
 		viper.AddConfigPath("./")
 		err := viper.MergeInConfig()
 		if err != nil {
 			panic(fmt.Sprintf("%s: %s", "Unable to read Config File secret.yml", err))
 		}
-	} else {
-		fmt.Println("Secret file not found")
 	}
 
 	// Overrides configs with ENV variables, ex: grpc.port with GRPC_PORT

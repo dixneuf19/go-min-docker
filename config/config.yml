@@ -1,0 +1,9 @@
+date: "2018-10-10"
+product: "CATS"
+postgres:
+  username: "USERNAME" 
+  password: "PASSWORD"
+  host: "some.database.url"
+  db: "some-database-name"
+grpc:
+  port: "50051"

@@ -27,10 +27,10 @@ func Init() {
 		if os.IsNotExist(err) {
 			fmt.Println("Secret file not found")
 		} else {
-			secretPath = "/etc/secret/secret.yml"
+			secretPath = "/etc/secret"
 		}
 	} else {
-		secretPath = "./secret.yml"
+		secretPath = "./"
 	}
 
 	if secretPath != "" {

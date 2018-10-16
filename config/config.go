@@ -24,7 +24,7 @@ func Init() {
 
 	if os.IsNotExist(err) {
 		_, err := os.Stat("/etc/secret/secret.yml")
-		if !os.IsNotExist(err) {
+		if os.IsNotExist(err) {
 			fmt.Println("Secret file not found")
 		} else {
 			secretPath = "/etc/secret/secret.yml"

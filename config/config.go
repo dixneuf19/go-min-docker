@@ -35,7 +35,7 @@ func Init() {
 
 	if secretPath != "" {
 		viper.SetConfigName("secret")
-		viper.AddConfigPath("./")
+		viper.AddConfigPath(secretPath)
 		err := viper.MergeInConfig()
 		if err != nil {
 			panic(fmt.Sprintf("%s: %s", "Unable to read Config File secret.yml", err))

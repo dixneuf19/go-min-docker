@@ -12,5 +12,4 @@
 *.out
 
 /vendor
-deploy.bash
 kubernetes.yml
